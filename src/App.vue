@@ -3,6 +3,7 @@
     <v-content>
       <Header/>
     </v-content>
+    <router-view></router-view>
     <v-content>
       <Footer/>
     </v-content>

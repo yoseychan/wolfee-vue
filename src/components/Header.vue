@@ -10,8 +10,8 @@
                     <router-link class="nav" to="/about">About</router-link>
                     <router-link class="nav" to="/contact">Contact</router-link>
                 </div>
-                <div>
-                    <router-link class="nav" to="/account">Account</router-link>
+                <div class="account">
+                    <router-link class="nav" to="/account"><i class="fas fa-user"></i></router-link>
                 </div>
             </v-layout>
         </v-container>
@@ -22,7 +22,7 @@
 header {
     width: 100%;
     background-color: rgb(36, 31, 43);
-    position: fixed;
+    // position: fixed;
     div{
         text-transform: uppercase;
         .nav {
@@ -31,6 +31,10 @@ header {
             font-family: 'Comfortaa', cursive;
             padding: 0 10px;
             
+            
+        }
+        .fas {
+            font-size: 24px;
         }
         .wolfee {
             text-decoration: none;
@@ -40,6 +44,10 @@ header {
             text-transform: capitalize;
         }
     }
+}
+.account {
+    width:124px;
+    
 }
 .container {
     padding:0;
