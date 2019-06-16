@@ -11,14 +11,7 @@
                     <router-link class="nav" to="/contact">Contact</router-link>
                 </div>
                 <div class="account">
-                    <v-badge
-                        color="#dcc7c6"
-                    >
-                        <template v-slot:badge>
-                            <span>0</span>
-                        </template>
-                        <v-icon class="btn" medium color="#dcc7c6">pets</v-icon>
-                    </v-badge>
+                   <router-link to="/account"><i class="fas fa-user"></i></router-link>
                 </div>
             </v-layout>
         </v-container>
@@ -55,6 +48,10 @@ header {
 }
 .btn {
     cursor: pointer;
+}
+.fas {
+    color:#dcc7c6;
+    font-size: 24px;
 }
 
 
