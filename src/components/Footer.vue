@@ -24,7 +24,7 @@
         a {
             color: rgb(220, 199, 198);
             text-decoration: none;
-            font-size: 32px;
+            font-size: 28px;
             padding: 0 10px;
         }
     }

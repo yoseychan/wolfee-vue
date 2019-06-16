@@ -2,7 +2,7 @@
     <header>
         <v-container>
            <v-layout class="align-center justify-space-between">
-                <div>
+                <div class="account">
                     <router-link class ="wolfee" to="/">Wolfee</router-link>
                 </div>
                 <div>
@@ -11,7 +11,14 @@
                     <router-link class="nav" to="/contact">Contact</router-link>
                 </div>
                 <div class="account">
-                    <router-link class="nav" to="/account"><i class="fas fa-user"></i></router-link>
+                    <v-badge
+                        color="#dcc7c6"
+                    >
+                        <template v-slot:badge>
+                            <span>0</span>
+                        </template>
+                        <v-icon class="btn" medium color="#dcc7c6">pets</v-icon>
+                    </v-badge>
                 </div>
             </v-layout>
         </v-container>
@@ -21,36 +28,33 @@
 <style lang="scss">
 header {
     width: 100%;
-    background-color: rgb(36, 31, 43);
-    // position: fixed;
+    background-color: #241f2b;
     div{
         text-transform: uppercase;
         .nav {
             text-decoration: none;
             color: rgb(220, 199, 198);
             font-family: 'Comfortaa', cursive;
-            padding: 0 10px;
-            
-            
-        }
-        .fas {
-            font-size: 24px;
+            padding: 0 10px;     
         }
         .wolfee {
             text-decoration: none;
             font-size: 40px;
-            color: rgb(220, 199, 198);
+            color: #dcc7c6;
             font-family: 'Fredericka the Great', cursive;
             text-transform: capitalize;
         }
     }
 }
 .account {
-    width:124px;
+    width: 125px;
     
 }
 .container {
     padding:0;
+}
+.btn {
+    cursor: pointer;
 }
 
 

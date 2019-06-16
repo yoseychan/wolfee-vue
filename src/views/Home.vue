@@ -5,8 +5,9 @@
       <div class="heroBtn">
         <v-btn flat large>
           <router-link to="Shop">View products</router-link>
-      </v-btn>
-    </div>
+        </v-btn>
+      </div>
+    </div>  
   </v-layout>
 </template>
 
@@ -31,8 +32,6 @@
 
 
 <script>
-
-
   export default {
     
   }
