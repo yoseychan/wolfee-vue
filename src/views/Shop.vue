@@ -54,6 +54,7 @@
               <div class="tres" @click="remove(k) ">x</div>             
             </div>
             <div class="total" v-bind="total">Total: {{ total }} &euro;</div>
+            <v-btn id="checky" class="total displayNo " dark color="#241f2b">Checkout</v-btn>
         </div>
     </div>
   </v-container>
@@ -117,8 +118,7 @@ p{
 }
 .cartList {
   margin: 0 0 0 50px;
-  // width: 300px; 
-
+  min-height:350px;
 }
 .list > * {
     display: inline-block;
@@ -137,12 +137,26 @@ p{
   width: auto;
   padding: 5px;
   cursor: pointer;
+  font-size: 18px;
 }
 .total {
   color: #dcc7c6;
   font-size: 20px;
   font-weight: 700;
+  margin: 0 0 0 50px;
+
 }
+//cart button
+#checky {
+  font-weight: normal;
+  font-size: 14px; 
+}
+.displayNo {
+  display: none;
+}
+.displayYe {
+  display: inline-block;
+};
 
 </style>
 
@@ -153,7 +167,7 @@ export default {
     data(){
         return {
             show: false,
-            image: "https://cdn.pixabay.com/photo/2016/01/25/10/47/smiling-1160445_960_720.jpg  ",    
+            image: "https://cdn.pixabay.com/photo/2016/01/25/10/47/smiling-1160445_960_720.jpg",    
             urlApi: "https://api.myjson.com/bins/wlbil",
             cart: [],
             products: {},
@@ -161,44 +175,53 @@ export default {
         }
     },
     mounted() {
-        axios.get(this.urlApi)
-            .then(response => {
-                this.products = response.data;
-        })
+      axios.get(this.urlApi)
+          .then(response => {
+              this.products = response.data;
+      })
         var cartOpen = agCookie.read('cart');
         if( cartOpen == null || cartOpen === "closed") {
             document.getElementById('swoosh').classList.add('cartOpen');
         } else {
             document.getElementById('swoosh').classList.add('cartClose');
         }
-
     },    
     methods: {
         something: function(item){
-          var total = this.total+= Number(item.price);
+          
+          this.total+= Number(item.price);
           this.cart.push({title: item.title, price: item.price});
-            
+          
+          if (this.cart == "") {
+          document.getElementById('checky').classList.add('displayNo');
+          document.getElementById('checky').classList.remove('displayYe');
+          }
+          if (this.cart != "") {
+          document.getElementById('checky').classList.add('displayYe');
+          document.getElementById('checky').classList.remove('displayNo');
+          }
+
         },
+
         move: function() {
-            var cartOpen = agCookie.read('cart');
-            if (cartOpen == null || cartOpen === "closed") {
-                document.getElementById('swoosh').classList.add('cartClose');
-                document.getElementById('swoosh').classList.remove('cartOpen');
-                agCookie.create('cart', 'opened');
-            }else {
-                document.getElementById('swoosh').classList.add('cartOpen');
-                document.getElementById('swoosh').classList.remove('cartClose');
-                agCookie.create('cart', 'closed');
-            }      
+          var cartOpen = agCookie.read('cart');
+          if (cartOpen == null || cartOpen === "closed") {
+            document.getElementById('swoosh').classList.add('cartClose');
+            document.getElementById('swoosh').classList.remove('cartOpen');
+            agCookie.create('cart', 'opened');
+          }else {
+            document.getElementById('swoosh').classList.add('cartOpen');
+            document.getElementById('swoosh').classList.remove('cartClose');
+            agCookie.create('cart', 'closed');
+          }      
         },
+
         remove: function (k){
           this.total -= Number(this.cart[k].price);
-          this.cart.splice(k, 1);
-          // this.total -= Number(k.price);
-          
+          this.cart.splice(k, 1);       
            
         },
     }
 
 }
-</script>0;
+</script>
