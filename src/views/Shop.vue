@@ -9,7 +9,7 @@
 
         <v-card xs12 md3 xl3 >
           <v-img
-            :src="item.image"
+            :src="image"
             height="300px"
           > 
           </v-img>
@@ -53,7 +53,7 @@
               <div class="dos">{{ item.price }}</div>
               <div class="tres" @click="remove(k) ">x</div>             
             </div>
-            <div class="total" v-bind="totalPrice()">Total: {{ total }} </div>
+            <div class="total" v-bind="total">Total: {{ total }} &euro;</div>
         </div>
     </div>
   </v-container>
@@ -153,11 +153,11 @@ export default {
     data(){
         return {
             show: false,
-            image: "assets/products/harness1.jpg",    
+            image: "https://cdn.pixabay.com/photo/2016/01/25/10/47/smiling-1160445_960_720.jpg  ",    
             urlApi: "https://api.myjson.com/bins/wlbil",
             cart: [],
             products: {},
-            total: ""
+            total: 0  
         }
     },
     mounted() {
@@ -175,7 +175,9 @@ export default {
     },    
     methods: {
         something: function(item){
-           this.cart.push({title: item.title, price: item.price}); 
+          var total = this.total+= Number(item.price);
+          this.cart.push({title: item.title, price: item.price});
+            
         },
         move: function() {
             var cartOpen = agCookie.read('cart');
@@ -190,17 +192,12 @@ export default {
             }      
         },
         remove: function (k){
+          this.total -= Number(this.cart[k].price);
           this.cart.splice(k, 1);
+          // this.total -= Number(k.price);
+          
            
         },
-        totalPrice: function() {
-           var total = 0;
-          //  for (i= 0; i < this.item.cart.length; i++) {
-          //    total =+ this.item.cart[i].price;
-
-          //}
-
-        }
     }
 
 }
